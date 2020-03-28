@@ -17,7 +17,7 @@ def stem_filter(txt, stem=False):
     stemmer = SnowballStemmer('english')
     txt = re.sub("#\S+|&\S+|@\S+|https?:\S+|RT|[^A-Za-z0-9]+",' ', str(txt).lower()).strip()
     txt = re.sub("&\S*|@\S+|https?:\S+",' ', str(txt).lower()).strip()
-    txt = re.sub("[^A-Za-z0-9']+",' ',str(txt).lower()).strip()
+    txt = re.sub("[^A-Za-z']+",' ',str(txt).lower()).strip()
     tokens = []
     for token in txt.split():
         if token not in stop_list:
@@ -91,12 +91,12 @@ def read_and_filter_data(folder):
                     if not(from_people):
                         break
                     
-                    filtered.append(paragraph)
+                filtered.append(paragraph)
                     
-                    stemmed_data = stem_filter("\n".join(filtered))
+                stemmed_data = stem_filter("\n".join(filtered))
                     
-                    if stemmed_data != "":
-                        data.loc[len(data)]=[people,stemmed_data]
+                if stemmed_data != "":
+                    data.loc[len(data)]=[people,stemmed_data]
                         
     
     data.to_csv("Kamno_data.csv",index=False)
