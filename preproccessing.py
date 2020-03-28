@@ -95,7 +95,8 @@ def read_and_filter_data(folder):
                     
                     stemmed_data = stem_filter("\n".join(filtered))
                     
-                    data.loc[len(data)]=[people,stemmed_data]
+                    if stemmed_data != "":
+                        data.loc[len(data)]=[people,stemmed_data]
                         
     
     data.to_csv("Kamno_data.csv",index=False)
